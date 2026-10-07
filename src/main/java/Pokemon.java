@@ -8,9 +8,14 @@ public class Pokemon {
     private Type type;
     private int maxHP;
     private int currentHP;
+    private int speed;
     private List<Attack> attacks;
 
-    public Pokemon(String name, Type type, int maxHP, int currentHP) {
+    public Pokemon(String name, Type type, int maxHP, int currentHP, int speed) {
+
+        if (speed <= 0){
+            throw new IllegalArgumentException("OBS! Hastigheten måste vara större än 0!");
+        }
 
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("OBS! Namnet får inte va tomt!");
@@ -32,6 +37,7 @@ public class Pokemon {
         this.type = type;
         this.maxHP = maxHP;
         this.currentHP = currentHP;
+        this.speed =speed;
         this.attacks = new ArrayList<>();
     }
 
@@ -90,6 +96,10 @@ public class Pokemon {
         this.currentHP = currentHP;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
     public List<Attack> getAttacks() {
         return Collections.unmodifiableList(attacks);
     }
@@ -118,7 +128,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        String text = "Name: " + name + ", Type: " + type + ", HP: " + currentHP + "/" + maxHP;
+        String text = "Name: " + name + ", Type: " + type + ", HP: " + currentHP + "/" + maxHP + ", Speed: " + speed;
 
         for (Attack attack : attacks) {
             text += "\n  - " + attack;

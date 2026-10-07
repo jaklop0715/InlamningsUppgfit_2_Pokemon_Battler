@@ -11,7 +11,7 @@ public class FileHelper {
 
             for (Pokemon pokemon : pokedex.getPokemons()){
 
-                writer.write("POKEMON|" + pokemon.getName() + "|" + pokemon.getType() + "|" + pokemon.getMaxHP() + "|" + pokemon.getCurrentHP() + "\n");
+                writer.write("POKEMON|" + pokemon.getName() + "|" + pokemon.getType() + "|" + pokemon.getMaxHP() + "|" + pokemon.getCurrentHP() + "|" + pokemon.getSpeed() + "\n");
 
                 for (Attack attack : pokemon.getAttacks()){
 
@@ -44,7 +44,7 @@ public class FileHelper {
 
                 if (parts[0].equals("POKEMON")) {
 
-                    if (parts.length != 5) {
+                    if (parts.length != 6) {
                         System.out.println("OBS! Ogiltig Pokémon-data i filen.");
                         continue;
                     }
@@ -53,8 +53,9 @@ public class FileHelper {
                     Type type = Type.valueOf(parts[2]);
                     int maxHP = Integer.parseInt(parts[3]);
                     int currentHP = Integer.parseInt(parts[4]);
+                    int speed = Integer.parseInt(parts[5]);
 
-                    Pokemon pokemon = new Pokemon(name, type, maxHP, currentHP);
+                    Pokemon pokemon = new Pokemon(name, type, maxHP, currentHP, speed);
 
                     pokedex.addPokemon(pokemon);
                     currentPokemon = pokemon;

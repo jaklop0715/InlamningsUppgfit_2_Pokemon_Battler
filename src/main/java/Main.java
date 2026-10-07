@@ -101,7 +101,10 @@ public class Main {
         System.out.println("Vad är Pokémons aktuella HP?");
         int currentHP = InputHelper.readIntInRange(0, maxHP);
 
-        Pokemon pokemon = new Pokemon(name, type, maxHP, currentHP);
+        System.out.println("Vad är Pokémons hastighet? (1-100)");
+        int speed = InputHelper.readIntInRange(1, 100);
+
+        Pokemon pokemon = new Pokemon(name, type, maxHP, currentHP, speed);
 
         System.out.println("Hur många attacker vill du lägga till? (1-4)");
 
