@@ -96,6 +96,23 @@ public class Pokemon {
         this.currentHP = currentHP;
     }
 
+    public void takeDamage (int damage) {
+
+        int newHP = currentHP - damage;
+
+        if (newHP < 0) {
+            newHP = 0;
+        }
+        currentHP = newHP;
+    }
+
+    public boolean isFainted() {
+        if (currentHP <= 0) {
+            return true;
+        }
+        return false;
+    }
+
     public int getSpeed() {
         return speed;
     }
