@@ -20,5 +20,11 @@ public class Battle {
         }
         return true;
     }
+    public int calculateDamage(Attack attack) {
 
+        int percent = random.nextInt(16) + 85;
+
+        int damage = attack.getBaseDamage() * percent / 100;
+        return damage;
+    }
 }
