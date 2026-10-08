@@ -1,3 +1,5 @@
+import com.sun.source.tree.AnnotatedTypeTree;
+
 import java.util.Random;
 
 public class Battle {
@@ -26,5 +28,25 @@ public class Battle {
 
         int damage = attack.getBaseDamage() * percent / 100;
         return damage;
+    }
+    public void doAttack (Pokemon attacker, Pokemon defender, Attack attack) {
+
+        System.out.println(attacker.getName() + "använder" + attack.getName() + "!");
+
+        if (attackHits(attack)) {
+
+            int damage = calculateDamage(attack);
+            defender.takeDamage(damage);
+
+            System.out.println("Attacken träffar och gör " + damage + "skada!");
+            System.out.println(defender.getName() + "har " + defender.getCurrentHP() + "/" + defender.getMaxHP() + "HP kvar.");
+
+            if (defender.isFainted()) {
+                System.out.println(defender.getName() + "blev besegrad!");
+            }
+        } else {
+            System.out.println("Attacken missade!");
+        }
+
     }
 }
