@@ -11,6 +11,7 @@ public class Battle {
         }
         return second;
     }
+
     private Random random = new Random();
 
     public boolean attackHits (Attack attack) {
@@ -22,6 +23,7 @@ public class Battle {
         }
         return true;
     }
+
     public int calculateDamage(Attack attack) {
 
         int percent = random.nextInt(16) + 85;
@@ -29,6 +31,7 @@ public class Battle {
         int damage = attack.getBaseDamage() * percent / 100;
         return damage;
     }
+
     public void doAttack (Pokemon attacker, Pokemon defender, Attack attack) {
 
         System.out.println(attacker.getName() + "använder" + attack.getName() + "!");
@@ -47,6 +50,21 @@ public class Battle {
         } else {
             System.out.println("Attacken missade!");
         }
+    }
+    public Attack chooseCpuAttack (Pokemon cpu) {
 
+        int index = random.nextInt(cpu.getAttacks().size());
+
+        return cpu.getAttacks().get(index);
+    }
+
+    public void fight (Pokemon player, Pokemon cpu) {
+
+        while (player.isFainted() == false && cpu.isFainted() == false) {
+
+            System.out.println("En omgång spelas...");
+
+
+        }
     }
 }
