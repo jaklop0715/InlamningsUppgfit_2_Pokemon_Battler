@@ -58,6 +58,17 @@ public class Battle {
         return cpu.getAttacks().get(index);
     }
 
+    public Attack choosePlayerAttack (Pokemon player) {
+
+        System.out.println("Välj attack: ");
+
+        for (int i = 0; i < player.getAttacks().size(); i++){
+            System.out.println((i + 1) + ". " + player.getAttacks().get(i));
+        }
+        int choice = InputHelper.readIntInRange(1, player.getAttacks().size());
+        return player.getAttacks().get(choice - 1);
+    }
+
     public void fight (Pokemon player, Pokemon cpu) {
 
         while (player.isFainted() == false && cpu.isFainted() == false) {
