@@ -28,7 +28,8 @@ public class Main {
             System.out.println("5. Spara till fil");
             System.out.println("6. Ladda från fil");
             System.out.println("7. Återställ till seedad data");
-            System.out.println("8. Avsluta");
+            System.out.println("8. Starta battle!");
+            System.out.println("9. Avsluta");
 
             System.out.println("Gör ett val i menyn");
             String choice = InputHelper.readNonBlankString();
@@ -77,10 +78,14 @@ public class Main {
                 }
 
                 case "8" -> {
+                    startBattle (pokedex);
+                }
+
+                case "9" -> {
                     FileHelper.saveToFile(pokedex);
                     running = false;
                 }
-                default -> System.out.println("OBS! du gjorde ett ogiltigt val. Välj mellan 1 och 8");
+                default -> System.out.println("OBS! du gjorde ett ogiltigt val. Välj mellan 1 och 9");
 
             }
         }
@@ -142,6 +147,15 @@ public class Main {
         pokedex.removePokemon(choice - 1);
 
         System.out.println(removedName + " har tagits bort! ");
+    }
+
+    private static void startBattle (Pokedex pokedex) {
+
+        if (pokedex.isEmpty()) {
+            System.out.println("OBS! Du har ingen Pokémon att slåss med!");
+            return;
+        }
+        System.out.println("Här kommer striden snart...");
     }
 
     private static void editPokemon(Pokedex pokedex) {
