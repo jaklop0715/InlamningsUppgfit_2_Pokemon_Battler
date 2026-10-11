@@ -168,7 +168,7 @@ public class Main {
 
         System.out.println("Du valde " + player.getName());
 
-        Pokemon cpu = SeedData.creatWildPokemon();
+        Pokemon cpu = SeedData.createWildPokemon();
         System.out.println("En vild " + cpu.getName() + " dyker upp!!");
 
     }
