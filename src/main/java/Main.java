@@ -1,4 +1,4 @@
-
+import java.sql.SQLOutput;
 
 public class Main {
     public static void main(String[] args) {
@@ -167,6 +167,10 @@ public class Main {
         Pokemon player = pokedex.getPokemons().get(choice - 1);
 
         System.out.println("Du valde " + player.getName());
+
+        Pokemon cpu = SeedData.creatWildPokemon();
+        System.out.println("En vild " + cpu.getName() + " dyker upp!!");
+
     }
 
     private static void editPokemon(Pokedex pokedex) {
