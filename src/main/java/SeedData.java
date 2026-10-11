@@ -37,7 +37,7 @@ public class SeedData {
 
     }
 
-    public static Pokemon creatWildPokemon() {
+    public static Pokemon createWildPokemon() {
         Random random = new Random();
         int pick = random.nextInt(3);
 
