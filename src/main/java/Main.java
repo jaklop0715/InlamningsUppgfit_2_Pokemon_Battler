@@ -166,11 +166,24 @@ public class Main {
 
         Pokemon player = pokedex.getPokemons().get(choice - 1);
 
-        System.out.println("Du valde " + player.getName());
+        if (player.getAttacks().size() == 0){
+            System.out.println(player.getName() + " har 0 HP och kan inte slåss!");
+            return;
+
+        }
 
         Pokemon cpu = SeedData.createWildPokemon();
-        System.out.println("En vild " + cpu.getName() + " dyker upp!!");
+        System.out.println("En vild " + cpu.getName() + " dyker upp!");
 
+        Battle battle = new Battle();
+        battle.fight(player, cpu);
+
+        if (player.isFainted()) {
+            System.out.println("Ouch! Du förlorade... ");
+        } else {
+            System.out.println("WOOOO! Du vann!");
+        }
+        player.setCurrentHP(player.getMaxHP());
     }
 
     private static void editPokemon(Pokedex pokedex) {

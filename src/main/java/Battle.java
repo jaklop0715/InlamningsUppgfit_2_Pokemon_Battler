@@ -34,18 +34,18 @@ public class Battle {
 
     public void doAttack (Pokemon attacker, Pokemon defender, Attack attack) {
 
-        System.out.println(attacker.getName() + "använder" + attack.getName() + "!");
+        System.out.println(attacker.getName() + " använder " + attack.getName() + "!");
 
         if (attackHits(attack)) {
 
             int damage = calculateDamage(attack);
             defender.takeDamage(damage);
 
-            System.out.println("Attacken träffar och gör " + damage + "skada!");
-            System.out.println(defender.getName() + "har " + defender.getCurrentHP() + "/" + defender.getMaxHP() + "HP kvar.");
+            System.out.println("Attacken träffar och gör " + damage + " skada!");
+            System.out.println(defender.getName() + "har " + defender.getCurrentHP() + "/" + defender.getMaxHP() + " HP kvar.");
 
             if (defender.isFainted()) {
-                System.out.println(defender.getName() + "blev besegrad!");
+                System.out.println(defender.getName() + " blev besegrad!");
             }
         } else {
             System.out.println("Attacken missade!");
