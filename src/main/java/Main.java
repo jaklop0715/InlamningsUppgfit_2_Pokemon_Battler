@@ -155,7 +155,18 @@ public class Main {
             System.out.println("OBS! Du har ingen Pokémon att slåss med!");
             return;
         }
-        System.out.println("Här kommer striden snart...");
+
+        for (int i = 0; i < pokedex.getPokemons().size(); i++) {
+            System.out.println((i + 1) + ". " + pokedex.getPokemons().get(i).getName());
+        }
+
+        System.out.println("Välj din Pokémon: ");
+
+        int choice = InputHelper.readIntInRange(1, pokedex.getPokemons().size());
+
+        Pokemon player = pokedex.getPokemons().get(choice - 1);
+
+        System.out.println("Du valde " + player.getName());
     }
 
     private static void editPokemon(Pokedex pokedex) {
