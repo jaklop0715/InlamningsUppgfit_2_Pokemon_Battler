@@ -1,4 +1,5 @@
 
+import java.util.Random;
 
 public class SeedData {
 
@@ -33,5 +34,30 @@ public class SeedData {
         jakCat.addAttack(new Attack("Meow Meow", 35, 95, Type.WATER));
         jakCat.addAttack(new Attack("Purr", 90, 75, Type.WATER));
         pokedex.addPokemon(jakCat);
+
+    }
+
+    public static Pokemon creatWildPokemon() {
+        Random random = new Random();
+        int pick = random.nextInt(3);
+
+        if (pick == 0){
+            Pokemon wild = new Pokemon("Crazy spark", Type.ELECTRIC, 85, 85, 90);
+            wild.addAttack(new Attack("Zap", 30, 80, Type.ELECTRIC));
+            wild.addAttack(new Attack("Sparkel", 70, 90, Type.ELECTRIC));
+            return wild;
+
+        } else if (pick == 1) {
+            Pokemon wild = new Pokemon("Pok Fire", Type.FIRE, 120, 120, 60);
+            wild.addAttack(new Attack("Fireboll", 40, 100, Type.FIRE));
+            wild.addAttack(new Attack("Fuego", 65, 80, Type.FIRE));
+            return wild;
+
+        } else {
+            Pokemon wild = new Pokemon("Poison Ivy" , Type.GRASS, 90,90,70 );
+            wild.addAttack(new Attack("Grass Attaack", 50, 70, Type.GRASS));
+            wild.addAttack(new Attack("Roots", 75,85, Type.GRASS));
+            return wild;
+        }
     }
 }
