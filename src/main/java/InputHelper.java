@@ -2,12 +2,23 @@ import java.util.Scanner;
 
 public class InputHelper {
 
+    private static String readLine() {
+        try {
+            return scanner.nextLine();
+        } catch (java.util.NoSuchElementException e) {
+            System.out.println();
+            System.out.println("Inmatningen avbröts. Programmet avslutas");
+            System.exit(0);
+            return null;
+        }
+    }
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int readInt () {
 
         while (true) {
-            String input = scanner.nextLine();
+            String input = readLine();
 
             try {
                 return Integer.parseInt(input);
@@ -65,7 +76,7 @@ public class InputHelper {
 
         while (true) {
 
-            String input = scanner.nextLine();
+            String input = readLine();
 
             if (input.isBlank()) {
 

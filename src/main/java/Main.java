@@ -8,6 +8,12 @@ public class Main {
         Pokedex pokedex = new Pokedex();
         FileHelper.loadFromFile(pokedex);
 
+        BattleStatus status = new BattleStatus();
+
+        if (pokedex.isEmpty()){
+            SeedData.seedPokedex(pokedex);
+        }
+
         if (pokedex.isEmpty()) {
             SeedData.seedPokedex(pokedex);
         }
@@ -29,7 +35,8 @@ public class Main {
             System.out.println("6. Ladda från fil");
             System.out.println("7. Återställ till seedad data");
             System.out.println("8. Starta battle!");
-            System.out.println("9. Avsluta");
+            System.out.println("9. Visa stridsresultat");
+            System.out.println("10. Avsluta");
 
             System.out.println("Gör ett val i menyn");
             String choice = InputHelper.readNonBlankString();
@@ -78,14 +85,18 @@ public class Main {
                 }
 
                 case "8" -> {
-                    startBattle (pokedex);
+                    startBattle (pokedex, status);
                 }
 
                 case "9" -> {
+                    showStatus(status);
+                }
+
+                case "10" -> {
                     FileHelper.saveToFile(pokedex);
                     running = false;
                 }
-                default -> System.out.println("OBS! du gjorde ett ogiltigt val. Välj mellan 1 och 9");
+                default -> System.out.println("OBS! du gjorde ett ogiltigt val. Välj mellan 1 och 10");
 
             }
         }
@@ -149,7 +160,7 @@ public class Main {
         System.out.println(removedName + " har tagits bort! ");
     }
 
-    private static void startBattle (Pokedex pokedex) {
+    private static void startBattle (Pokedex pokedex, BattleStatus status) {
 
         if (pokedex.isEmpty()) {
             System.out.println("OBS! Du har ingen Pokémon att slåss med!");
@@ -166,10 +177,14 @@ public class Main {
 
         Pokemon player = pokedex.getPokemons().get(choice - 1);
 
-        if (player.getAttacks().size() == 0){
+        if (player.getAttacks().size() == 0) {
+            System.out.println(player.getName() + " har inga attacker och kan inte slåss!");
+            return;
+        }
+
+        if (player.isFainted()) {
             System.out.println(player.getName() + " har 0 HP och kan inte slåss!");
             return;
-
         }
 
         Pokemon cpu = SeedData.createWildPokemon();
@@ -180,10 +195,21 @@ public class Main {
 
         if (player.isFainted()) {
             System.out.println("Ouch! Du förlorade... ");
+            status.addLoss();
         } else {
             System.out.println("WOOOO! Du vann!");
+            status.addWin();
         }
         player.setCurrentHP(player.getMaxHP());
+    }
+
+    private static void showStatus(BattleStatus status) {
+        if (status.getTotal() == 0) {
+            System.out.println("Det finns inga sparade strider!!");
+            return;
+        }
+        System.out.println("Vinster: " + status.getWins());
+        System.out.println("Förluster: " + status.getLosses());
     }
 
     private static void editPokemon(Pokedex pokedex) {

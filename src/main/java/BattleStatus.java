@@ -4,7 +4,7 @@ public class BattleStatus {
     private int wins;
     private int losses;
 
-    public void addwin() {
+    public void addWin() {
         wins++;
     }
 
